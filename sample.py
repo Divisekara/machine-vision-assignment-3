@@ -13,9 +13,13 @@
 # print(sample)
 
 
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib.pyplot as plt
+# import numpy as np
 
-x = np.linspace(0,20,100)
-plt.plot(x, np.sin(x))
-plt.show()
+# x = np.linspace(0,20,100)
+# plt.plot(x, np.sin(x))
+# plt.show()
+
+
+L = [1,2,3,4,5,0]
+print(L.index(min(L)))

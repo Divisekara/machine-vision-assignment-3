@@ -75,9 +75,6 @@ Dataset_dir = "dataset/"
 
 x_train, y_train, x_val, y_val, x_test = load_dataset(Dataset_dir)
 
-# train_mse,val_mse = train_mse, val_mse = fit_and_evaluate(x_train, y_train, x_val, y_val,3) # sample value is 3 just to check
-# print(train_mse, val_mse)
-
 train_mse_array = []
 val_mse_array = []
 for i in range(1,11):
@@ -88,12 +85,15 @@ for i in range(1,11):
 # plotting the train and validation squarred errors
 plt.plot(range(1,11), train_mse_array, "o-", color="red", label="Train MSE")
 plt.plot(range(1,11), val_mse_array, "o-", color="green", label="Validation MSE")
+plt.axhline(y = min(val_mse_array), color = 'black', linestyle = 'dashed')
+plt.axvline(x = 1+val_mse_array.index(min(val_mse_array)), color = 'black', linestyle = 'dashed')
 
 plt.xticks(range(1,11))
+plt.yticks(list(np.linspace(0,0.08,5)) + [min(val_mse_array)])
 plt.legend()
 plt.xlabel('n hyperparameter range 1-10')
 plt.ylabel('Train/validation  Mean Square Error')
-
+plt.title('Hyper-parameter n vs train and validation MSE')
 
 plt.savefig('Train_and_validation_MSE_for_n=1_to_10.png')
 plt.show()
