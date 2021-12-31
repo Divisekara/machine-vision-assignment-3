@@ -1,13 +1,17 @@
 import numpy as np
 from typing import Tuple
 
-def load_dataset(src_dir = "C:\Users\Asitha\Desktop\machine vision assignment 3\\170150A"): # -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:]
-    np.loadtxt(src_dir)
+def load_dataset(src_dir: str) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    # load and return the dataset
 
-"""Load the dataset as a set of numpy arrays.
-Args:
-src_dir: Directory where dataset files are stored.
-Returns:
-(x_train, y_train, x_val, y_val, x_test) tuple where each array is one dimensional.
-"""
-pass # Implement here.
+    x_train = np.loadtxt(src_dir + '/x_train.txt')
+    y_train = np.loadtxt(src_dir + '/y_train.txt')
+    x_val = np.loadtxt(src_dir + '/x_val.txt')
+    y_val = np.loadtxt(src_dir + '/y_val.txt')
+    x_test = np.loadtxt(src_dir + '/x_test.txt')
+
+    return x_train, y_train, x_val, y_val, x_test
+
+Dataset_dir = "C:/Users/Asitha/Desktop/machine vision assignment 3/170150A/dataset"
+print(type(load_dataset(Dataset_dir)))
+
