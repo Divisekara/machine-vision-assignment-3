@@ -74,11 +74,31 @@ def fit_and_evaluate(x_train:np.ndarray, y_train:np.ndarray, x_val:np.ndarray, y
 Dataset_dir = "dataset/"
 
 x_train, y_train, x_val, y_val, x_test = load_dataset(Dataset_dir)
-train_mse,val_mse = train_mse, val_mse = fit_and_evaluate(x_train, y_train, x_val, y_val,3)
-print(train_mse, val_mse)
 
-# for i in range(1,11):
-#     train_mse,val_mse = train_mse, val_mse = fit_and_evaluate(x_train, y_train, x_val, y_val,i)
+# train_mse,val_mse = train_mse, val_mse = fit_and_evaluate(x_train, y_train, x_val, y_val,3) # sample value is 3 just to check
+# print(train_mse, val_mse)
+
+train_mse_array = []
+val_mse_array = []
+for i in range(1,11):
+    train_mse,val_mse = train_mse, val_mse = fit_and_evaluate(x_train, y_train, x_val, y_val,i)
+    train_mse_array.append(train_mse)
+    val_mse_array.append(val_mse)
+
+# plotting the train and validation squarred errors
+plt.plot(range(1,11), train_mse_array, "o-", color="red", label="Train MSE")
+plt.plot(range(1,11), val_mse_array, "o-", color="green", label="Validation MSE")
+
+plt.xticks(range(1,11))
+plt.legend()
+plt.xlabel('n hyperparameter range 1-10')
+plt.ylabel('Train/validation  Mean Square Error')
+
+
+plt.savefig('Train_and_validation_MSE_for_n=1_to_10.png')
+plt.show()
+
+
 
 
 
