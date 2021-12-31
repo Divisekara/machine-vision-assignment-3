@@ -46,10 +46,11 @@ from sklearn.linear_model import LinearRegression
 # from sklearn.metrics import mean_squared_error # this can be achieved using np.mean function
 
 def fit_and_evaluate(x_train:np.ndarray, y_train:np.ndarray, x_val:np.ndarray, y_val:np.ndarray, x_test: np.ndarray, n:int) -> Tuple[float, float]:
+# here we also give x_test as an arguement to the function for last part of the assignment we can remove it since other parts does not need this 
     regressor = LinearRegression()
     x_train_features = get_features(x_train, n)
     x_val_features = get_features(x_val, n)
-    x_test_features = get_features(x_test, n)
+    x_test_features = get_features(x_test, n) #only for part d)
     regressor.fit(x_train_features,y_train)
     
     # W = regressor.coef_
@@ -59,10 +60,10 @@ def fit_and_evaluate(x_train:np.ndarray, y_train:np.ndarray, x_val:np.ndarray, y
     
     y_predict_train = regressor.predict(x_train_features)
     y_predict_val = regressor.predict(x_val_features) 
-    y_predict_test = regressor.predict(x_test_features)
+    y_predict_test = regressor.predict(x_test_features) # only for part d)
 
-    print(y_predict_test)
-    np.savetxt("170150A_y_predict_test.txt", y_predict_test)
+    # print(y_predict_test)
+    np.savetxt("170150A_y_predict_test.txt", y_predict_test) # only for part d)
 
     # we can use numpy mean function to find the Mean Squared Error no need to import sklearn metrics
     # train_mse = mean_squared_error(y_train, y_predict_train) 
@@ -83,14 +84,14 @@ Dataset_dir = "dataset/"
 x_train, y_train, x_val, y_val, x_test = load_dataset(Dataset_dir)
 
 # the following line is only for the part d which is the prediction on test set
-# fit_and_evaluate(x_train, y_train, x_val, y_val, x_test,4)
+fit_and_evaluate(x_train, y_train, x_val, y_val, x_test,4)
 
 # Finding the MSE on training and validation for different n values
 train_mse_array = []
 val_mse_array = []
 
 for i in range(1,11):
-    train_mse,val_mse = train_mse, val_mse = fit_and_evaluate(x_train, y_train, x_val, y_val,i)
+    train_mse,val_mse = train_mse, val_mse = fit_and_evaluate(x_train, y_train, x_val, y_val, x_test,i)
     train_mse_array.append(train_mse)
     val_mse_array.append(val_mse)
 
@@ -112,6 +113,7 @@ plt.show()
 
 ###################################################################################################################################
 # end
+# answer for the part d is inside the fit_and_evaluation function itself only few changes were done to take the required file 
 
 
 
