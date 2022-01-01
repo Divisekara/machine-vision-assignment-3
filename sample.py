@@ -21,5 +21,29 @@
 # plt.show()
 
 
-L = [1,2,3,4,5,0]
-print(L.index(min(L)))
+# L = [1,2,3,4,5,0]
+# print(L.index(min(L)))
+
+# import os
+# path = "https://drive.google.com/drive/folders/1kHzTWqNNGR_Js4XzOUC0InZj86tJKX0r"
+# files = os.listdir(path)
+
+# print(files)
+
+
+
+page_token = None
+while True:
+    response = drive_service.files().list(q="mimeType='image/jpeg'",
+                                          spaces='drive',
+                                          fields='nextPageToken, files(id, name)',
+                                          pageToken=page_token).execute()
+    for file in response.get('files', []):
+        # Process change
+        print ('Found file: %s (%s)' % (file.get('name'), file.get('id')))
+    page_token = response.get('nextPageToken', None)
+    if page_token is None:
+        break
+
+
+
