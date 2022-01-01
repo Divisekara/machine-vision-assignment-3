@@ -3,7 +3,7 @@ __author__ = "D.M.Asitha Indrajith Divisekara"
 __indexNo__ = "170150A"
 
 # this is the only input to the entire script
-Dataset_dir = "dataset/"
+Dataset_dir = "170150A/"
 ##################################################################################################################################
 
 # question 1 - part a
