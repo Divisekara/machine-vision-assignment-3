@@ -2,6 +2,8 @@
 __author__ = "D.M.Asitha Indrajith Divisekara"
 __indexNo__ = "170150A"
 
+# this is the only input to the entire script
+Dataset_dir = "dataset/"
 ##################################################################################################################################
 
 # question 1 - part a
@@ -26,6 +28,7 @@ def load_dataset(src_dir: str) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.n
 # variables x,y represent rows in x_train.txt y_train.txt
 # question 1 part b sub part 1
 # make input features for the above linear regression model.
+
 def get_features(x: np.ndarray, n: int) -> np.ndarray:
     features = []
 
@@ -33,9 +36,7 @@ def get_features(x: np.ndarray, n: int) -> np.ndarray:
         features.append(np.power(x,i))
 
     features_nparray = np.array(features)
-
     features_output = np.transpose(features_nparray)
-
     return features_output
 ####################################################################################################################################
 
@@ -63,6 +64,7 @@ def fit_and_evaluate(x_train:np.ndarray, y_train:np.ndarray, x_val:np.ndarray, y
     y_predict_test = regressor.predict(x_test_features) # only for part d)
 
     # print(y_predict_test)
+    # np.savetxt("170150A_y_predict_test.txt", y_predict_test) # only for part d)
     np.savetxt("170150A_y_predict_test.txt", y_predict_test) # only for part d)
 
     # we can use numpy mean function to find the Mean Squared Error no need to import sklearn metrics
@@ -79,7 +81,6 @@ def fit_and_evaluate(x_train:np.ndarray, y_train:np.ndarray, x_val:np.ndarray, y
 import matplotlib.pyplot as plt
 
 # the datasets conaining path can be given wrt the root folder
-Dataset_dir = "dataset/"
 
 x_train, y_train, x_val, y_val, x_test = load_dataset(Dataset_dir)
 
@@ -108,25 +109,12 @@ plt.xlabel('n hyperparameter range 1-10')
 plt.ylabel('Train/validation  Mean Square Error')
 plt.title('Hyper-parameter n vs train and validation MSE')
 
-plt.savefig('Train_and_validation_MSE_for_n=1_to_10.png')
+plt.savefig('170150A_Train_and_validation_MSE_for_n=1_to_10.png')
 plt.show()
 
 ###################################################################################################################################
 # end
 # answer for the part d is inside the fit_and_evaluation function itself only few changes were done to take the required file 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
