@@ -48,8 +48,9 @@ from sklearn.linear_model import LinearRegression
 
 def fit_and_evaluate(x_train:np.ndarray, y_train:np.ndarray, x_val:np.ndarray, y_val:np.ndarray, x_test: np.ndarray, n:int) -> Tuple[float, float]:
 # here we also give x_test as an arguement to the function for last part of the assignment we can remove it since other parts does not need this 
-    regressor = LinearRegression()
+    regressor = LinearRegression(fit_intercept = False)
     x_train_features = get_features(x_train, n)
+    print(x_train_features.shape, y_train.shape)
     x_val_features = get_features(x_val, n)
     x_test_features = get_features(x_test, n) #only for part d)
     regressor.fit(x_train_features,y_train)
@@ -65,7 +66,9 @@ def fit_and_evaluate(x_train:np.ndarray, y_train:np.ndarray, x_val:np.ndarray, y
 
     # print(y_predict_test)
     # np.savetxt("170150A_y_predict_test.txt", y_predict_test) # only for part d)
-    np.savetxt("170150A_y_predict_test.txt", y_predict_test) # only for part d)
+    np.savetxt(Dataset_dir + "170150A_y_predict_test.txt", y_predict_test) # only for part d)
+    # np.savetxt("170150A/170150A_y_x_test_features.txt", x_test_features) # only for part d)
+
 
     # we can use numpy mean function to find the Mean Squared Error no need to import sklearn metrics
     # train_mse = mean_squared_error(y_train, y_predict_train) 
@@ -83,9 +86,6 @@ import matplotlib.pyplot as plt
 # the datasets conaining path can be given wrt the root folder
 
 x_train, y_train, x_val, y_val, x_test = load_dataset(Dataset_dir)
-
-# the following line is only for the part d which is the prediction on test set
-fit_and_evaluate(x_train, y_train, x_val, y_val, x_test,4)
 
 # Finding the MSE on training and validation for different n values
 train_mse_array = []
@@ -116,5 +116,6 @@ plt.show()
 # end
 # answer for the part d is inside the fit_and_evaluation function itself only few changes were done to take the required file 
 
-
+# the following line is only for the part d which is the prediction on test set
+fit_and_evaluate(x_train, y_train, x_val, y_val, x_test,4)
 
